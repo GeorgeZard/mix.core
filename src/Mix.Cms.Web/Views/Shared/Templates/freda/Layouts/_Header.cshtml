@@ -1,0 +1,71 @@
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@{
+    string culture = ViewBag.culture;
+    var topCates = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("top", ViewBag.culture, Url);
+    var socials = Mix.Cms.Lib.MixCmsHelper.GetModule("social", ViewBag.culture);
+    string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+}
+
+
+<!-- main header -->
+<header class="yb-main-header" id="main-header">
+    <!-- main menu -->
+    <nav class="yb-main-menu " id="main-menu">
+        <div class="uk-container" data-uk-navbar>
+            <div class="uk-navbar-left">
+                <a class="yb-logo uk-navbar-item uk-logo" href="light-index.html"><span>Freda</span></a>
+            </div>
+            <div class="uk-navbar-right uk-hidden@m">
+                <a class="uk-navbar-toggle" href="#" id="btn-menu-toggle">
+                    <span data-uk-navbar-toggle-icon class="yb-icon-menu"></span>
+                    <span data-uk-icon="close" class="yb-icon-close"></span>
+                </a>
+            </div>
+            <div class="yb-menu-toggle-wrapper" id="menucollapse">
+                <div class="uk-navbar-center">
+                    <ul class="uk-navbar-nav" data-uk-scrollspy-nav="closest: li; scroll: false; offset: 79 ">
+                        <li>
+                            <a class="yb-inner-link" href="#home"> Home </a>
+                        </li>
+                        <li>
+                            <a class="yb-inner-link" href="#about"> About</a>
+                        </li>
+                        <li>
+                            <a class="yb-inner-link" href="#resume"> Resume </a>
+                        </li>
+                        <li>
+                            <a class="yb-inner-link" href="#portfolio"> Portfolio </a>
+                        </li>
+                        <li>
+                            <a class="yb-inner-link" href="#blog"> Blog </a>
+                        </li>
+                        <li>
+                            <a class="yb-inner-link" href="#contact"> Contact </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav yb-social-icons">
+                        <li>
+                            <a href="#">
+                                <span class="uk-icon " data-uk-icon="icon: facebook"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="uk-icon" data-uk-icon="icon: instagram"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="uk-icon" data-uk-icon="icon: twitter"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav><!-- end main menu -->
+</header><!-- end main header -->

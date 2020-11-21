@@ -1,0 +1,56 @@
+@{ 
+    string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+}
+<!DOCTYPE html>
+<html lang="@ViewBag.culture" amp>
+
+<head>
+    <title>
+        Έυα Γιαννούλη | Ειδικός ψυχικής υγείας
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="/content/templates/freda/assets/fredahtml-20/src/img/favicon.png" />
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,700&display=swap">
+    <link rel="stylesheet" href="/content/templates/freda/assets/fredahtml-20/src/app/css/uikit-custom.min.css" />
+    <link rel="stylesheet" href="/content/templates/freda/assets/fredahtml-20/src/app/css/app.css" />
+
+   
+    <base href="/@ViewBag.culture">
+
+    @RenderSection("Seo", false)
+    <!--[STYLES]-->
+    @RenderSection("Styles", false)
+</head>
+
+<body id="body-app">
+
+    <!-- page loader -->
+    <div id="pageloader" class="yb-pageloader-wrapper">
+        <div class="uk-position-center  uk-text-center">
+            <div data-uk-spinner></div>
+        </div>
+    </div><!-- end page loader -->
+
+
+
+    @Html.Partial("../Layouts/_Header.cshtml")
+
+    @RenderBody()
+    <hr>
+    @Html.Partial("../Layouts/_Footer.cshtml")
+
+
+    <!--   Core JS Files   -->
+    <script src="~/js/framework.min.js"></script>
+    <script src="~/js/app-client-required.min.js"></script>
+    <script src="~/js/app-client.min.js"></script>
+    <script src="~/js/app-shared.min.js"></script>
+    <!--[SCRIPTS]-->
+    <script src="/content/templates/freda/assets/fredahtml-20/src/app/js/plugins.min.js"></script>
+    <script src="/content/templates/freda/assets/fredahtml-20/src/app/js/app.js"></script>
+    @RenderSection("Scripts", false)
+</body>
+</html>
