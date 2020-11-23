@@ -8,13 +8,68 @@
 
     <ItemGroup>
         <Compile Remove="logs\**" />
-        <Compile Remove="Views\Shared\Templates\**" />
         <Content Remove="logs\**" />
-        <Content Remove="Views\Shared\Templates\**" />
         <EmbeddedResource Remove="logs\**" />
-        <EmbeddedResource Remove="Views\Shared\Templates\**" />
         <None Remove="logs\**" />
-        <None Remove="Views\Shared\Templates\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Views\Shared\Templates\evolo\Edms\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Forms\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Layouts\_Footer.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Layouts\_Header.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Masters\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Masters\_Layout.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Modules\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Pages\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Pages\_Home.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Pages\_Modules.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Pages\_Search.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Pages\_Tag.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Posts\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Widgets\Navigation.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Widgets\_Comments_Facebook.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Widgets\_Pagination.cshtml" />
+      <None Include="Views\Shared\Templates\evolo\Widgets\_Related_Posts.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Edms\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Forms\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Layouts\_Footer.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Layouts\_Header.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Masters\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Masters\_Layout.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Modules\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Pages\Post_List.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Pages\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Pages\_Home.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Pages\_Modules.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Pages\_Search.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Pages\_Tag.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Posts\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Widgets\Navigation.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Widgets\_Comments_Facebook.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Widgets\_Pagination.cshtml" />
+      <None Include="Views\Shared\Templates\freda\Widgets\_Related_Posts.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Edms\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Forms\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Layouts\Footer.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Layouts\Header.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Layouts\Navigation.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Masters\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Masters\_Layout.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Modules\TestVueComponent.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Modules\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Pages\Home.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Pages\Post_List.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Pages\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Pages\_Maintenance.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Pages\_Modules.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Pages\_Search.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Pages\_Tag.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Posts\_Blank.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Widgets\Navigation.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Widgets\_Comments_Facebook.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Widgets\_Pagination.cshtml" />
+      <None Include="Views\Shared\Templates\sujiyama\Widgets\_Related_Posts.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -23,6 +78,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     </ItemGroup>
     <ItemGroup>
         <Protobuf Include="Protos\greet.proto" GrpcServices="Client" />
