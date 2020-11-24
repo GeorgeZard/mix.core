@@ -16,6 +16,7 @@ namespace Mix.Cms.Lib.ViewModels.MixPostModules
 
         public ReadViewModel() : base()
         {
+            CreatedDateTime = DateTime.Now;
         }
         #region Properties
 

@@ -3,7 +3,8 @@
 
 @{
     string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
-    var cates = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("footer", ViewBag.culture, Url);
+    var footer = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("footer", ViewBag.culture, Url);
+    var social = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("social", ViewBag.culture, Url);
 }
 
 <!-- Footer -->
@@ -33,37 +34,19 @@
             </div> <!-- end of col -->
             <div class="col-md-4">
                 <div class="footer-col last">
-                    <h4>Social Media</h4>
-                    <span class="fa-stack">
-                        <a href="#your-link">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-facebook-f fa-stack-1x"></i>
-                        </a>
-                    </span>
-                    <span class="fa-stack">
-                        <a href="#your-link">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-twitter fa-stack-1x"></i>
-                        </a>
-                    </span>
-                    <span class="fa-stack">
-                        <a href="#your-link">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-google-plus-g fa-stack-1x"></i>
-                        </a>
-                    </span>
-                    <span class="fa-stack">
-                        <a href="#your-link">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-instagram fa-stack-1x"></i>
-                        </a>
-                    </span>
-                    <span class="fa-stack">
-                        <a href="#your-link">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-linkedin-in fa-stack-1x"></i>
-                        </a>
-                    </span>
+                    <h4>Social</h4>
+                    @if (social != null) {
+                        foreach (var item in social.MenuItems) {
+                            <span class="fa-stack">
+                                <a href="@item.Uri" title="@item.Title" target="@item.Target">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="@item.Classes"></i>
+                                </a>
+                            </span>
+                        }
+                    }
+
+                   
                 </div>
             </div> <!-- end of col -->
         </div> <!-- end of row -->

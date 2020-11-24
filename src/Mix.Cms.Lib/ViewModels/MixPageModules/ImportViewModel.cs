@@ -16,6 +16,7 @@ namespace Mix.Cms.Lib.ViewModels.MixPageModules
 
         public ImportViewModel() : base()
         {
+            CreatedDateTime = DateTime.Now;
         }
         #region Models
         [JsonProperty("id")]
