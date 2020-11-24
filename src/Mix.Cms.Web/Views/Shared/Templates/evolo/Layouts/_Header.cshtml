@@ -3,14 +3,12 @@
 
 @{
     string culture = ViewBag.culture;
-    var topCates = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("top", ViewBag.culture, Url);
-    var social = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("social", ViewBag.culture, Url);
-
+    
     string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
 }
 
 <!-- Header -->
-<header id="header" class="header">
+<header id="header" class="header" style ="background: url(/content/templates/evolo/uploads/2020-11/thermaltsakirisdraftfinalc16695d34d544561b456205fa28e6fa9.png);"> 
     <div class="header-content">
         <div class="container">
             <div class="row">
@@ -23,7 +21,7 @@
                 </div> <!-- end of col -->
                 <div class="col-lg-6">
                     <div class="image-container">
-                        <img class="img-fluid" src="@assetFolder/web/images/header-teamwork.svg" alt="alternative">
+                        <img class="img-fluid" src="/content/templates/evolo/uploads/2020-11/thermaltsakirisdraftfinalec4b94036e0f4d09b8fded64cc2c38b5.jpg" alt="alternative">
                     </div> <!-- end of image-container -->
                 </div> <!-- end of col -->
             </div> <!-- end of row -->

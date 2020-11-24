@@ -10,6 +10,7 @@
 
 @if (contact != null) {
 
+
 <!-- Contact -->
 <div id="contact" class="form-2">
     <div class="container">
@@ -35,7 +36,7 @@
                         switch (col.DataType) {
                             case Mix.Cms.Lib.MixEnums.MixDataType.Text:
                                 <div class="form-group">
-                                    <input type="text" class="form-control-input" id="@col.Name" @(col.IsRequired ? "required" :"")>
+                                    <input type="text" class="form-control-input" id="@col.Name"  @(col.IsRequired ? "required" :"")>
                                     <label class="label-control" for="@col.Name">@col.Title</label>
                                     <div class="help-block with-errors"></div>
                                 </div>
