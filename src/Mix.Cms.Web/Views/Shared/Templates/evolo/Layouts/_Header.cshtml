@@ -3,29 +3,31 @@
 
 @{
     string culture = ViewBag.culture;
-    
+
     string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    var header = MixCmsHelper.GetModule("header", ViewBag.culture);
+
 }
 
 <!-- Header -->
-<header id="header" class="header" style ="background: url(/content/templates/evolo/uploads/2020-11/thermaltsakirisdraftfinalc16695d34d544561b456205fa28e6fa9.png);"> 
+<header id="header" class="header"> 
     <div class="header-content">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="text-container">
-                        <h1><span class="turquoise">StartUp Landing</span> Page Template Free</h1>
-                        <p class="p-large">Use Evolo free landing page template to promote your business startup and generate leads for the offered services</p>
-                        <a class="btn-solid-lg page-scroll" href="#services">DISCOVER</a>
-                    </div> <!-- end of text-container -->
-                </div> <!-- end of col -->
-                <div class="col-lg-6">
-                    <div class="image-container">
-                        <img class="img-fluid" src="/content/templates/evolo/uploads/2020-11/thermaltsakirisdraftfinalec4b94036e0f4d09b8fded64cc2c38b5.jpg" alt="alternative">
-                    </div> <!-- end of image-container -->
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of header-content -->
-</header> <!-- end of header -->
-<!-- end of header -->
+                        <h1><span class="turquoise">@header.AttributeData.Data.Obj.title.Value</span><br /> @header.AttributeData.Data.Obj.title2.Value</h1>
+                        <p class="p-large">@header.AttributeData.Data.Obj.description.Value</p>
+                        @* <a class="btn-solid-lg page-scroll" href="#services">DISCOVER</a>*@
+                            </div> <!-- end of text-container -->
+                        </div> <!-- end of col -->
+                        <div class="col-lg-6">
+                            <div class="image-container">
+                                <img class="img-fluid" src="@header.AttributeData.Data.Obj.banner.Value" alt="alternative">
+                            </div> <!-- end of image-container -->
+                        </div> <!-- end of col -->
+                    </div> <!-- end of row -->
+                </div> <!-- end of container -->
+            </div> <!-- end of header-content -->
+        </header> <!-- end of header -->
+        <!-- end of header -->

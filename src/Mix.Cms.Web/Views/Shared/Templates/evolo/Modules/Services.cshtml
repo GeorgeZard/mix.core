@@ -1,3 +1,14 @@
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@{
+    string culture = ViewBag.culture;
+    var topCates = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("services", ViewBag.culture, Url);
+    var services = MixCmsHelper.GetModule("services", ViewBag.culture);
+
+    string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+}
+
 <!-- Services -->
 <div id="services" class="cards-1">
     <div class="container">
