@@ -5,6 +5,7 @@
     string assetFolder = MixCmsHelper.GetAssetFolder(ViewBag.culture);
     string templateFolder = MixCmsHelper.GetTemplateFolder(ViewBag.culture);
     var lightbox = MixCmsHelper.GetModule("lightbox", ViewBag.culture);
+    var lightboxNav = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("lightbox", ViewBag.culture, Url);
 }
 <!-- Details 2 -->
 @if (lightbox != null)
@@ -18,93 +19,42 @@
                         <h2>@lightbox.Title</h2>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12"style="column-count:2;">
                                 <ul class="list-group list-unstyled li-space-lg">
-                                    @* @foreach (var light in lightbox.Columns)
-        {
-            switch (light.DataType)
-            {
-                case Mix.Cms.Lib.MixEnums.MixDataType.Text:
-                    <li class="media">
-                        <i class="fas fa-check"></i><div class="media-body">@light.dot1</div>
-                    </li>
-
-                    break;
-            }
-        }
-                                        <-- Font Awesome Circled Numbers -->
-                                        <li class="media">
-                                        <span class="fas fa-li fas-stack">
-                                            <i class="fas fa-circle fa-stack-2x"></i>
-                                            <strong class="fas fa-stack-1x">1.</strong>
-                                        </span><div class="media-body">User administration</div>
-                                    </li>
+                                    @*
+                                            <-- Font Awesome Circled Numbers -->
+                                            <li class="media">
+                                            <span class="fas fa-li fas-stack">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <strong class="fas fa-stack-1x">1.</strong>
+                                            </span><div class="media-body">User administration</div>
+                                        </li>
                                     *@
 
 
-                                    <li class="media">
-                                        <i class="fas"><strong>1. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point1.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>2. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point2.Value</div>
-                                    </li>
+                                    @if (lightboxNav != null)
+                                    {
+                                        foreach (var item in lightboxNav.MenuItems)
+                                        {
+                                            <li class="media">
+                                                <i class="fas"><strong>@item.Uri </strong> </i><div class="media-body">@item.Title</div>
+                                            </li>
 
-                                    <li class="media">
-                                        <i class="fas"><strong>3. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point3.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>4. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point4.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>5. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point5.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>6. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point6.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>7. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point7.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>8. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point8.Value</div>
-                                    </li>
+
+                                        }
+                                    }
+
+
+
 
                                 </ul>
                             </div>
-                            <div class="col-md-6">
-                                <ul class="list-unstyled li-space-lg">
 
-
-                                    <li class="media">
-                                        <i class="fas"><strong>9. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point9.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>10. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point10.Value</div>
-                                    </li>
-
-                                    <li class="media">
-                                        <i class="fas"><strong>11. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point11.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>12. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point12.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>13. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point13.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>14. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point14.Value</div>
-                                    </li>
-                                    <li class="media">
-                                        <i class="fas"><strong>15. </strong> </i><div class="media-body">@lightbox.AttributeData.Data.Obj.point15.Value</div>
-                                    </li>
-
-                                </ul>
-
-                            </div>
                         </div>
                         <div class="row">
 
                             <a class="btn-solid-reg popup-with-move-anim mr-2" href="#details-lightbox-2">@lightbox.AttributeData.Data.Obj.dot1.Value</a>
-                            <a class="btn-solid-reg-red" href="@lightbox.AttributeData.Data.Obj.manual.Value" target="_blank"   >@lightbox.AttributeData.Data.Obj.dot2.Value</a>
+                            <a class="btn-solid-reg-red" href="@lightbox.AttributeData.Data.Obj.manual.Value" target="_blank">@lightbox.AttributeData.Data.Obj.dot2.Value</a>
 
                         </div>
 
