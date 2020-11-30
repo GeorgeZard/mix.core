@@ -1,0 +1,90 @@
+@using Mix.Cms.Lib
+@using Mix.Cms.Lib.Services
+@model Mix.Cms.Lib.ViewModels.MixModules.ReadMvcViewModel
+@{
+    string assetFolder = MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    string templateFolder = MixCmsHelper.GetTemplateFolder(ViewBag.culture);
+    var lightbox = MixCmsHelper.GetModule("lightbox", ViewBag.culture);
+    var lightbox2Nav = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("lightbox2", ViewBag.culture, Url);
+}
+<!-- Details 2 -->
+@if (lightbox != null)
+{
+
+    <div class="basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h2>@lightbox.AttributeData.Data.Obj.point14.Value</h2>
+
+                        <div class="row">
+                            <div class="col-md-12" style="column-count:2;">
+                                <ul class="list-group list-unstyled li-space-lg">
+                                    @*
+                                            <-- Font Awesome Circled Numbers -->
+                                            <li class="media">
+                                            <span class="fas fa-li fas-stack">
+                                                <i class="fas fa-circle fa-stack-2x"></i>
+                                                <strong class="fas fa-stack-1x">1.</strong>
+                                            </span><div class="media-body">User administration</div>
+                                        </li>
+                                    *@
+
+
+                                    @if (lightbox2Nav != null)
+                                    {
+                                        foreach (var item in lightbox2Nav.MenuItems)
+                                        {
+                                            <li class="media">
+                                                <i class="fas"><strong>@item.Uri </strong> </i><div class="media-body">@item.Title</div>
+                                            </li>
+
+
+                                        }
+                                    }
+
+
+
+
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <a class="btn-solid-reg popup-with-move-anim mr-2" href="#details-lightbox-2">@lightbox.AttributeData.Data.Obj.dot1.Value</a>
+                            <a class="btn-solid-reg-red" href="@lightbox.AttributeData.Data.Obj.manual.Value" target="_blank">@lightbox.AttributeData.Data.Obj.dot2.Value</a>
+
+                        </div>
+
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <div class="image-container">
+                        <img class="img-fluid" src="@lightbox.AttributeData.Data.Obj.lightbox2p1.Value" alt="alternative" style="margin-top: 100px;">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-2 -->
+
+
+    <!-- end of details 2 -->
+    <!-- Details Lightbox 2 -->
+    <div id="details-lightbox-2" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="container">
+            <div class="row">
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <div class="col-lg-12">
+                    <div class="image-container">
+                        <img class="img-fluid" src="@lightbox.AttributeData.Data.Obj.lightbox2p2.Value" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of lightbox-basic -->
+    <!-- end of details lightbox 2 -->
+}
