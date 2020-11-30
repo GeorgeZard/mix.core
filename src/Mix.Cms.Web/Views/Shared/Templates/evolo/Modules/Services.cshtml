@@ -4,7 +4,7 @@
 @{
     string culture = ViewBag.culture;
     var topCates = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("services", ViewBag.culture, Url);
-    var services = MixCmsHelper.GetModule("services", ViewBag.culture);
+    var services = Mix.Cms.Lib.MixCmsHelper.GetModule("services", ViewBag.culture);
 
     string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
 }
