@@ -1,14 +1,18 @@
-
+@using Mix.Cms.Lib
+@using Mix.Cms.Lib.Services
 @model Mix.Cms.Lib.ViewModels.MixModules.ReadMvcViewModel
 
+@{
+    string assetFolder = MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    string templateFolder = MixCmsHelper.GetTemplateFolder(ViewBag.culture);
+    var video = MixCmsHelper.GetModule("video", ViewBag.culture);
+    
+}
 <!-- Video -->
+
 <div class="basic-3">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>@Model.Title</h2>
-            </div> <!-- end of col -->
-        </div> <!-- end of row -->
+
         <div class="row">
             <div class="col-lg-12">
 
@@ -21,6 +25,12 @@
 
                 <p>@Html.Raw(@Model.Description)</p>
             </div> <!-- end of col -->
+        </div> <!-- end of row -->
+        <div class="row">
+            <div class="image-container">
+
+                <img class="img-fluid" src="@Model.AttributeData.Data.Obj.GetValue("banner2")" alt="alternative">
+            </div> <!-- end of image-container -->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 </div> <!-- end of basic-3 -->
