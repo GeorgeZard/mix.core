@@ -1,44 +1,48 @@
-<!-- Customers -->
-<div class="slider-1">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h5>Trusted By</h5>
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@model Mix.Cms.Lib.ViewModels.MixModules.ReadMvcViewModel
 
-                <!-- Image Slider -->
-                <div class="slider-container">
-                    <div class="swiper-container image-slider">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="image-container">
-                                    <img class="img-responsive" src="/content/templates/evolo/assets/web/images/customer-logo-1.png" alt="alternative">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container">
-                                    <img class="img-responsive" src="/content/templates/evolo/assets/web/images/customer-logo-2.png" alt="alternative">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container">
-                                    <img class="img-responsive" src="/content/templates/evolo/assets/web/images/customer-logo-3.png" alt="alternative">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container">
-                                    <img class="img-responsive" src="/content/templates/evolo/assets/web/images/customer-logo-4.png" alt="alternative">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container">
-                                    <img class="img-responsive" src="/content/templates/evolo/assets/web/images/customer-logo-5.png" alt="alternative">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="image-container">
-                                    <img class="img-responsive" src="/content/templates/evolo/assets/web/images/customer-logo-6.png" alt="alternative">
-                                </div>
-                            </div>
+@{
+    string culture = ViewBag.culture;
+    var topCustoms = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("customers", ViewBag.culture, Url);
+    var customers = Mix.Cms.Lib.MixCmsHelper.GetModule("customers", ViewBag.culture);
+
+    string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+}
+
+<!-- Customers -->
+@if (customers != null)
+{
+    <div class="slider-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h5>@Html.Raw(@Model.Description)</h5>
+
+                    <!-- Image Slider -->
+                    <div class="slider-container">
+                        <div class="swiper-container image-slider">
+                            <div class="swiper-wrapper">
+                                @if (topCustoms != null)
+                                {
+                                    foreach (var item in topCustoms.MenuItems)
+                                    {
+
+
+                                        <div class="swiper-slide">
+                                            <div class="image-container">
+                                                <img class="img-responsive" src="@item.Icon" alt="alternative">
+                                            </div>
+                                        </div>
+
+
+
+                                    }
+                                }
+
+
+
+                            
                         </div> <!-- end of swiper-wrapper -->
                     </div> <!-- end of swiper container -->
                 </div> <!-- end of slider-container -->
@@ -47,5 +51,6 @@
             </div> <!-- end of col -->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
-</div> <!-- end of slider-1 -->
+    </div> <!-- end of slider-1 -->
+}
 <!-- end of customers -->
