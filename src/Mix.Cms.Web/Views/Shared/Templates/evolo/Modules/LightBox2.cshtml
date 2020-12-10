@@ -1,4 +1,4 @@
-@using Mix.Cms.Lib
+﻿@using Mix.Cms.Lib
 @using Mix.Cms.Lib.Services
 @model Mix.Cms.Lib.ViewModels.MixModules.ReadMvcViewModel
 @{
@@ -11,7 +11,7 @@
 @if (lightbox != null)
 {
 
-    <div class="basic-2">
+    <div id="inside" class="basic-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -52,7 +52,7 @@
 
                         </div>
                         <div class="row">
-
+                            <a class="btn-solid-reg popup-with-move-anim mr-2" href="#details-lightbox-1">@lightbox.AttributeData.Data.Obj.dot1.Value</a>
                             <a class="btn-solid-reg-red" href="@lightbox.AttributeData.Data.Obj.manual.Value" target="_blank">@lightbox.AttributeData.Data.Obj.dot2.Value</a>
 
                         </div>
@@ -69,5 +69,22 @@
         </div> <!-- end of container -->
     </div> <!-- end of basic-2 -->
 
+
+    <!-- Details Lightbox 2 -->
+    <div id="details-lightbox-1" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="container">
+            <div class="row">
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <div class="col-lg-12">
+                    <div class="image-container">
+                        <img class="img-fluid" src="@lightbox.AttributeData.Data.Obj.lightbox2p2.Value" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of lightbox-basic -->
+    <!-- end of details lightbox 2 -->
+}
 
 }

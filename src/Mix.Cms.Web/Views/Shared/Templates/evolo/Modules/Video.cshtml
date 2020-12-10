@@ -13,7 +13,7 @@
 <div class="basic-3">
     <div class="container">
 
-        <div class="row" >
+        <div class="row">
             <div class="col-lg-12">
 
                 <!-- Video Preview -->
@@ -22,16 +22,19 @@
                     <img class="img-fluid" src="@Model.AttributeData.Data.Obj.GetValue("banner")" alt="alternative">
                 </div> <!-- end of image-container -->
                 <!-- end of video preview -->
-
-                <p>@Html.Raw(@Model.Description)</p>
+                <center>
+                    <p>@Html.Raw(@Model.Description)</p>
+                </center>
             </div> <!-- end of col -->
         </div> <!-- end of row -->
+        @*
         <div class="row" style="margin-top:1.5rem;">
             <div class="image-container">
 
                 <img class="img-fluid" src="@Model.AttributeData.Data.Obj.GetValue("banner2")" alt="alternative">
             </div> <!-- end of image-container -->
-        </div> <!-- end of row -->
+        *@
+    </div> <!-- end of row -->
     </div> <!-- end of container -->
 </div> <!-- end of basic-3 -->
 <!-- end of video -->

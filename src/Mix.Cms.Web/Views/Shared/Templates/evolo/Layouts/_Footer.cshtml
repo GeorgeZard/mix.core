@@ -1,10 +1,11 @@
 @using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
 
+
 @{
     string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
-    var footer = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("footer", ViewBag.culture, Url);
     var social = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("social", ViewBag.culture, Url);
+    var footer = MixCmsHelper.GetModule("footer", ViewBag.culture);
 }
 
 <!-- Footer -->
@@ -13,30 +14,31 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="footer-col">
-                    <h4>About Evolo</h4>
-                    <p>We're passionate about offering some of the best business growth services for startups</p>
+
+                    <h4>@footer.Title</h4>
+                    <p>
+                        @Html.Raw(footer.Description)
+                    </p>
+
                 </div>
             </div> <!-- end of col -->
             <div class="col-md-4">
                 <div class="footer-col middle">
-                    <h4>Important Links</h4>
-                    <ul class="list-unstyled li-space-lg">
-                        <li class="media">
-                            <i class="fas fa-square"></i>
-                            <div class="media-body">Our business partners <a class="turquoise" href="#your-link">startupguide.com</a></div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-square"></i>
-                            <div class="media-body">Read our <a class="turquoise" href="terms-conditions.html">Terms & Conditions</a>, <a class="turquoise" href="privacy-policy.html">Privacy Policy</a></div>
-                        </li>
-                    </ul>
+
+                    <div class="image-container">
+
+                        <img class="img-fluid" src="@footer.AttributeData.Data.Obj.logo.Value" alt="alternative">
+                    </div> <!-- end of image-container -->
+
                 </div>
             </div> <!-- end of col -->
             <div class="col-md-4">
                 <div class="footer-col last">
                     <h4>Social</h4>
-                    @if (social != null) {
-                        foreach (var item in social.MenuItems) {
+                    @if (social != null)
+                    {
+                        foreach (var item in social.MenuItems)
+                        {
                             <span class="fa-stack">
                                 <a href="@item.Uri" title="@item.Title" target="@item.Target">
                                     <i class="fas fa-circle fa-stack-2x"></i>
@@ -46,14 +48,13 @@
                         }
                     }
 
-                   
+
                 </div>
             </div> <!-- end of col -->
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 </div> <!-- end of footer -->
 <!-- end of footer -->
-
 <!-- Copyright -->
 <div class="copyright">
     <div class="container">
@@ -65,35 +66,33 @@
     </div> <!-- end of container -->
 </div> <!-- end of copyright -->
 <!-- end of copyright -->
-
-
 @*<footer class="footer footer-default ">
-    <div class="container">
-        <nav>
-            <ul>
-                @if (cates != null) {
-                    foreach (var cate in cates.MenuItems) {
+        <div class="container">
+            <nav>
+                <ul>
+                    @if (cates != null) {
+                        foreach (var cate in cates.MenuItems) {
+                            <li>
+                                <a href="@cate.Uri">
+                                    @cate.Title
+                                </a>
+                            </li>
+                        }
+                    }
+                    @if (!User.Identity.IsAuthenticated) {
                         <li>
-                            <a href="@cate.Uri">
-                                @cate.Title
+                            <a href="/admin">
+                                Login
+                            </a>
+                        </li>
+                    } else {
+                        <li>
+                            <a href="/admin">
+                                Portal
                             </a>
                         </li>
                     }
-                }
-                @if (!User.Identity.IsAuthenticated) {
-                    <li>
-                        <a href="/admin">
-                            Login
-                        </a>
-                    </li>
-                } else {
-                    <li>
-                        <a href="/admin">
-                            Portal
-                        </a>
-                    </li>
-                }
-            </ul>
-        </nav>
-    </div>
-</footer>*@
+                </ul>
+            </nav>
+        </div>
+    </footer>*@
