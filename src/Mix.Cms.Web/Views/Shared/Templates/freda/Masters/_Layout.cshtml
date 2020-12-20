@@ -1,4 +1,4 @@
-@{ 
+﻿@{ 
     string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
 }
 <!DOCTYPE html>
@@ -6,7 +6,7 @@
 
 <head>
     <title>
-        Έυα Γιαννούλη | Ειδικός ψυχικής υγείας
+        @Model.SeoTitle
     </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,7 +25,7 @@
     @RenderSection("Styles", false)
 </head>
 
-<body id="body-app">
+<body id="body-app" class="@ViewData["PageClass"]" data-spy="scroll" data-target=".fixed-top" ng-app="MixClient" ng-controller="AppClientController" ng-init="init('@ViewBag.culture')">
 
     <!-- page loader -->
     <div id="pageloader" class="yb-pageloader-wrapper">
@@ -36,7 +36,7 @@
 
 
 
-    @Html.Partial("../Layouts/_Header.cshtml")
+    @Html.Partial("../Widgets/_Nav.cshtml")
 
     @RenderBody()
     <hr>
