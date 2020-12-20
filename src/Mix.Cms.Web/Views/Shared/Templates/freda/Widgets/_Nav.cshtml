@@ -1,0 +1,64 @@
+@using Mix.Cms.Lib
+@using Mix.Cms.Lib.Services
+
+@{
+    string culture = ViewBag.culture;
+    string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    var navs = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("top", ViewBag.culture, Url);
+    var social = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("social", ViewBag.culture, Url);
+
+}
+
+<!-- Navigation -->
+<!-- main header -->
+<header class="yb-main-header" id="main-header">
+    <!-- main menu -->
+    <nav class="yb-main-menu " id="main-menu">
+        <div class="uk-container" data-uk-navbar>
+            <div class="uk-navbar-left">
+                <a class="yb-logo uk-navbar-item uk-logo" href="/@ViewBag.culture"><span>Freda</span></a>
+            </div>
+            <div class="uk-navbar-right uk-hidden@m">
+                <a class="uk-navbar-toggle" href="#" id="btn-menu-toggle">
+                    <span data-uk-navbar-toggle-icon class="yb-icon-menu"></span>
+                    <span data-uk-icon="close" class="yb-icon-close"></span>
+                </a>
+            </div>
+            <div class="yb-menu-toggle-wrapper" id="menucollapse">
+                <div class="uk-navbar-center">
+                    <ul class="uk-navbar-nav" data-uk-scrollspy-nav="closest: li; scroll: false; offset: 79 ">
+                        @if (navs != null)
+                        {
+                            @foreach (var menu in navs.MenuItems)
+                            {
+                                <li>
+                                    <a class="yb-inner-link" href="@menu.Uri"> @menu.Title </a>
+                                </li>
+
+                               
+
+                            }
+                        }
+                       
+                </div>
+                <div class="uk-navbar-right">
+                    <ul class="uk-navbar-nav yb-social-icons">
+                        @* @if (social != null)
+        {
+            foreach (var item in social.Data.Items)
+            {
+                <li>
+                    <a href="@(item.Property("uri"))">
+                        <span class="uk-icon " data-uk-icon="icon: facebook" title="@(item.Property("title"))"></span>
+                    </a>
+                </li>
+            }
+        }*@
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav><!-- end main menu -->
+</header><!-- end main header -->
+<!-- end of navigation -->
