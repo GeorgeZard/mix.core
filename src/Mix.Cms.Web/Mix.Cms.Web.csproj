@@ -4,6 +4,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <StartupObject>Mix.Cms.Web.Program</StartupObject>
         <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+        <UserSecretsId>57a4c558-1d23-4c6a-a75b-734fb8099d18</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
