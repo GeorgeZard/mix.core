@@ -22,7 +22,7 @@
         <div class="uk-container">
             <div class="yb-section-point">
 
-                <span>Resume</span>
+                <span>@(Mix.Cms.Lib.Services.MixService.TranslateString("resume_title", ViewBag.culture))</span>
             </div>
         </div>
     </div>
@@ -93,15 +93,15 @@
             </div>
         </div>
     </div>
-    <div class="yb-section yb-section-padding uk-background-cover uk-background-fixed " data-uk-parallax="bgy: -200" data-src="/content/templates/freda/assets/fredahtml-20/src/img/bg/bg2.jpg" data-uk-img>
+    <div class="yb-section yb-section-padding uk-background-cover uk-background-fixed " data-uk-parallax="bgy: -200" data-src="@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("cv_background", ViewBag.culture))" data-uk-img>
         <div class="yb-overlay-primary uk-position-cover"></div>
         <div class="uk-container uk-text-center uk-position-relative">
             <div data-uk-grid class="uk-grid-small  uk-flex-center">
                 <div>
-                    <a href="#" class=" yb-btn uk-button uk-button-primary uk-button-large">Download CV</a>
+                    <a href="@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("cv_file", ViewBag.culture))" download class=" yb-btn uk-button uk-button-primary uk-button-large">@(Mix.Cms.Lib.Services.MixService.TranslateString("resume_download_cv", ViewBag.culture))</a>
                 </div>
                 <div>
-                    <a href="#contact" class="yb-inner-link yb-btn uk-button uk-button-danger  uk-button-large">Hire Me</a>
+                    <a href="#contact" class="yb-inner-link yb-btn uk-button uk-button-danger  uk-button-large">@(Mix.Cms.Lib.Services.MixService.TranslateString("resume_contact", ViewBag.culture))</a>
                 </div>
             </div>
         </div>

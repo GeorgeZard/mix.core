@@ -2,9 +2,10 @@
 @inject IAuthorizationService AuthorizationService
 
 @{
-   
+
     string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
     var cates = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("footer", ViewBag.culture, Url);
+    var social = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("social", ViewBag.culture, Url);
 }
 
 
@@ -19,13 +20,15 @@
         <div class="uk-container">
             <div data-uk-grid class="uk-child-width-1-2@s">
                 <div class="uk-margin-remove uk-text-left@s">
-                    &copy; 2019 Freda, by YobiThemes.
+                    &copy; @DateTime.Now.Year @(Mix.Cms.Lib.Services.MixService.GetConfig<string>("SiteName", ViewBag.culture))
                 </div>
                 <div class="uk-margin-remove uk-text-right@s">
                     <div class="yb-footer-social">
-                        <a href="#">Facebook</a>
-                        <a href="#">Instagram</a>
-                        <a href="#">Twitter</a>
+                        @if (social != null) {
+                            foreach (var item in social.MenuItems) {
+                                <a href="@item.Uri">@item.Title</a>
+                            }
+                        }
                     </div>
                 </div>
             </div>
