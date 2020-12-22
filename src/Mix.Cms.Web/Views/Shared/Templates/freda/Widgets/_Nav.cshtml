@@ -16,7 +16,7 @@
     <nav class="yb-main-menu " id="main-menu">
         <div class="uk-container" data-uk-navbar>
             <div class="uk-navbar-left">
-                <a class="yb-logo uk-navbar-item uk-logo" href="/@ViewBag.culture"><span>Freda</span></a>
+                <a class="uk-navbar-item" href="/@ViewBag.culture"><img src="@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("Logo", ViewBag.culture))" alt="alternative"></a>
             </div>
             <div class="uk-navbar-right uk-hidden@m">
                 <a class="uk-navbar-toggle" href="#" id="btn-menu-toggle">
@@ -39,21 +39,20 @@
 
                             }
                         }
-                       
+                       </ul>
                 </div>
                 <div class="uk-navbar-right">
                     <ul class="uk-navbar-nav yb-social-icons">
-                        @* @if (social != null)
-        {
-            foreach (var item in social.Data.Items)
-            {
-                <li>
-                    <a href="@(item.Property("uri"))">
-                        <span class="uk-icon " data-uk-icon="icon: facebook" title="@(item.Property("title"))"></span>
-                    </a>
-                </li>
-            }
-        }*@
+                        @if (social != null) {
+                  
+                            foreach (var item in social.MenuItems) {
+                                <li>
+                                    <a href="@item.Uri" target="_blank">
+                                        <span class="uk-icon " data-uk-icon="icon: @item.Title" title="@item.Title"></span>
+                                    </a>
+                                </li>
+                            }
+                        }
 
                     </ul>
                 </div>
