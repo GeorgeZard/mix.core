@@ -1,7 +1,7 @@
 @using Mix.Cms.Lib
 @using Mix.Cms.Lib.Services
 @{
-    var assetFolder = MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    var assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
 }
 @if(Model.PostNavs.Count >0){
     <!-- Our Blog Section -->

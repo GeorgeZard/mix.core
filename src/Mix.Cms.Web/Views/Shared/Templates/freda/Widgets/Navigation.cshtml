@@ -1,9 +1,9 @@
 @using Mix.Cms.Lib
 @using Mix.Cms.Lib.Services
 @{
-    var assetFolder = MixCmsHelper.GetAssetFolder(ViewBag.culture);
-    var navs = await MixCmsHelper.GetNavigation("top", ViewBag.culture, Url);
-    var social = MixCmsHelper.GetModule("social", ViewBag.culture);
+    var assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    var navs = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("top", ViewBag.culture, Url);
+    var social = Mix.Cms.Lib.MixCmsHelper.GetModule("social", ViewBag.culture);
 }
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark pt-4 px-0">

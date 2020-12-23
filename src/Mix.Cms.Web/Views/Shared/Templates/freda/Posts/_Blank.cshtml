@@ -3,8 +3,8 @@
 @model Mix.Cms.Lib.ViewModels.MixPosts.ReadMvcViewModel
 
 @{
-    string assetFolder = MixCmsHelper.GetAssetFolder(ViewBag.culture);
-    string templateFolder = MixCmsHelper.GetTemplateFolder(ViewBag.culture);
+    string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    string templateFolder = Mix.Cms.Lib.MixCmsHelper.GetTemplateFolder(ViewBag.culture);
 }
 
     <main class="yb-main-content">

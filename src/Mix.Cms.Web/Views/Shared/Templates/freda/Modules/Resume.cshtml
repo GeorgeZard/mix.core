@@ -3,8 +3,8 @@
 @model Mix.Cms.Lib.ViewModels.MixModules.ReadMvcViewModel
 
 @{
-    string assetFolder = MixCmsHelper.GetAssetFolder(ViewBag.culture);
-    string templateFolder = MixCmsHelper.GetTemplateFolder(ViewBag.culture);
+    string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    string templateFolder = Mix.Cms.Lib.MixCmsHelper.GetTemplateFolder(ViewBag.culture);
 
     var attributes_set_data = Mix.Cms.Lib.ViewModels.MixAttributeSetDatas.ReadMvcViewModel.Repository.GetModelListAsync("Priority", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Asc, 0, 20);
     var attributes_set_data_categories = attributes_set_data.Result.Data.Items.Where(p => p.AttributeSetName == "sys_category").OrderBy(o => o.Priority);

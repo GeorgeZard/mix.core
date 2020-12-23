@@ -3,8 +3,8 @@
 @inject IAuthorizationService AuthorizationService
 @{
     string culture = ViewBag.culture;
-    string assetFolder = MixCmsHelper.GetAssetFolder(ViewBag.culture);
-    var header = MixCmsHelper.GetModule("header", ViewBag.culture);
+    string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    var header = Mix.Cms.Lib.MixCmsHelper.GetModule("header", ViewBag.culture);
     
 
 }
