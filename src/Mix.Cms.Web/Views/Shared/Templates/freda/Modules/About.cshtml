@@ -8,6 +8,14 @@
     var aboutCates = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("About", ViewBag.culture, Url);
     var aboutServs = await Mix.Cms.Lib.MixCmsHelper.GetNavigation("AboutServices", ViewBag.culture, Url);
 
+    var attributes_set_data = Mix.Cms.Lib.ViewModels.MixAttributeSetDatas.ReadMvcViewModel.Repository.GetModelListAsync("Priority", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Asc, 0, 20);
+    var attributes_set_data_categories = attributes_set_data.Result.Data.Items.Where(p => p.AttributeSetName == "sys_category").OrderBy(o => o.Priority);
+
+    var attributes_set_value = Mix.Cms.Lib.ViewModels.MixAttributeSetValues.ReadMvcViewModel.Repository.GetModelListAsync("Priority", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Asc, 0, 20);
+    var attributes_set_value_categories = attributes_set_value.Result.Data.Items.Where(p => p.AttributeSetName == "sys_category").OrderBy(o => o.Priority);
+    var posts = await Mix.Cms.Lib.ViewModels.MixPosts.ReadViewModel.Repository.GetModelListAsync("CreatedDateTime", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Desc, 20, 0);
+
+
 }
 <!-- about section -->
 
@@ -16,18 +24,19 @@
     <div class="yb-my-profile">
         <div class="uk-container">
             <div class="uk-grid-collapse uk-child-width-expand@m" data-uk-grid>
-               
-                    <div>
-                        <div class="yb-my-profile-img uk-background-cover uk-background-norepeat uk-background-top-center" data-src="@Model.ImageUrl" data-uk-img data-uk-lightbox>
-                            @if (!string.IsNullOrEmpty(Mix.Cms.Lib.Services.MixService.GetConfig<string>("about_video", ViewBag.culture))) {
-                                <a href="@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("about_video", ViewBag.culture))" class="yb-my-intro">
-                                    <span data-uk-icon="icon: play; ratio: 2"></span>
-                                    <span class="yb-my-intro-text">Video</span>
-                                </a>
-                            }
-                        </div>
+
+                <div>
+                    <div class="yb-my-profile-img uk-background-cover uk-background-norepeat uk-background-top-center" data-src="@Model.ImageUrl" data-uk-img data-uk-lightbox>
+                        @if (!string.IsNullOrEmpty(Mix.Cms.Lib.Services.MixService.GetConfig<string>("about_video", ViewBag.culture)))
+                        {
+                            <a href="@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("about_video", ViewBag.culture))" class="yb-my-intro">
+                                <span data-uk-icon="icon: play; ratio: 2"></span>
+                                <span class="yb-my-intro-text">Video</span>
+                            </a>
+                        }
                     </div>
-                
+                </div>
+
                 <div>
                     <div class="yb-my-profile-desc">
                         <div class="yb-section-point-wrapper">
@@ -40,11 +49,21 @@
                             <p>
                                 @Html.Raw(Model.Description)
                             </p>
+
+                            @*@foreach (var post in posts.Data.Items)
+                                {
+                                    <a href="/post/@post.Id/@post.SeoTitle" class="yb-my-intro">
+                                        <span data-uk-icon="icon: play; ratio: 2"></span>
+                                        <span class="yb-my-intro-text">Video</span>
+                                    </a>
+                                }*@
                         </div>
                         <div class="yb-my-profile-desc-bottom yb-bg-soft">
                             <ul class="yb-my-profile-desc-info uk-list">
-                                @if (aboutCates != null) {
-                                    foreach (var item in aboutCates.MenuItems) {
+                                @if (aboutCates != null)
+                                {
+                                    foreach (var item in aboutCates.MenuItems)
+                                    {
 
                                         <li>
                                             <span>@item.Title</span> : @item.Description
@@ -60,12 +79,27 @@
             </div>
         </div>
     </div>
+    <div class="yb-my-profile">
+        <div class="uk-container">
+            <div>
+                <div class="yb-my-profile-desc">
+                    <div class="yb-section-point-wrapper">
+                        <div class="yb-section-point right">
+                            <span>@Model.Title</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="yb-border-top yb-border-bottom ">
         <div class="uk-container">
             <div data-uk-grid class="yb-box-services uk-child-width-1-4@l uk-child-width-1-2 uk-text-center uk-grid-divider">
 
-                @if (aboutServs != null) {
-                    foreach (var item in aboutServs.MenuItems) {
+                @if (aboutServs != null)
+                {
+                    foreach (var item in aboutServs.MenuItems)
+                    {
                         <div>
                             <div class="yb-box-service">
                                 <span class="uk-icon" data-uk-icon="icon: grid; ratio: 1.5"></span>
@@ -77,6 +111,8 @@
                 }
 
             </div>
+
         </div>
+
     </div>
 </section><!-- end about section -->

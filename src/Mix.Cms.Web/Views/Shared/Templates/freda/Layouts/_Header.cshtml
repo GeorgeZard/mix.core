@@ -5,56 +5,72 @@
     string culture = ViewBag.culture;
     string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
     var header = Mix.Cms.Lib.MixCmsHelper.GetModule("header", ViewBag.culture);
-    
+
 
 }
 
-    <div class="yb-full-height " id="home">
+<div class="yb-full-height " id="home">
 
-        <section class="yb-profile-desc yb-dark-skin uk-light">
-            <div class="yb-slide-bg uk-light" tabindex="-1" data-uk-slideshow="animation: fade; autoplay: true; draggable: false; pause-on-hover: false">
-                <ul class="uk-slideshow-items yb-slide-wrapper">
-                    @{
-                        var slider1 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("sliderone", ViewBag.culture));
-                        if (!string.IsNullOrEmpty(slider1)) {
-                            <li class="uk-background-cover" data-uk-img data-src="@slider1">
-                                <img src="@slider1" alt="" data-uk-cover>
-                                <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
-                            </li>
-                        }
+    <section class="yb-profile-desc yb-dark-skin uk-light">
+        <div class="yb-slide-bg uk-light" tabindex="-1" data-uk-slideshow="animation: fade; autoplay: true; draggable: false; pause-on-hover: false">
+            <ul class="uk-slideshow-items yb-slide-wrapper">
+                @{
+                    var slider1 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("sliderone", ViewBag.culture));
+                    var quote1 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("quoteone", ViewBag.culture));
+                    if (!string.IsNullOrEmpty(slider1)  || !string.IsNullOrEmpty(quote1))
+                    {
+                        <li class="uk-background-cover" data-uk-img data-src="@slider1">
+                            <img src="@slider1" alt="" data-uk-cover>
+                            <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
+                            <div class="uk-position-center uk-position-medium uk-text-center uk-light">
 
-                        var slider2 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("slidertwo", ViewBag.culture));
-                        if (!string.IsNullOrEmpty(slider1)) {
-                            <li class="uk-background-cover" data-uk-img data-src="@slider2">
-                                <img src="@slider2" alt="" data-uk-cover>
-                                <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
-                            </li>
-                        }
-
-                        var slider3 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("sliderthree", ViewBag.culture));
-                        if (!string.IsNullOrEmpty(slider3)) {
-                            <li class="uk-background-cover" data-uk-img data-src="@slider3">
-                                <img src="@slider3" alt="" data-uk-cover>
-                                <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
-                            </li>
-                        }
+                                <p class="uk-margin-remove">@quote1</p>
+                            </div>
+                        </li>
                     }
 
+                    var slider2 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("slidertwo", ViewBag.culture));
+                    var quote2 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("quotetwo", ViewBag.culture));
+                    if (!string.IsNullOrEmpty(slider2) && !string.IsNullOrEmpty(quote2))
+                    {
+                        <li class="uk-background-cover" data-uk-img data-src="@slider2">
+                            <img src="@slider2" alt="" data-uk-cover>
+                            <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
+                            <div class="uk-position-center uk-position-medium uk-text-center uk-light">
 
-                </ul>
-            </div>
+                                <p class="uk-margin-remove">@quote2</p>
+                            </div>
+                        </li>
+                    }
+
+                    var slider3 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("sliderthree", ViewBag.culture));
+                    var quote3 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("quotethree", ViewBag.culture));
+                    if (!string.IsNullOrEmpty(slider3) && !string.IsNullOrEmpty(quote3))
+                    {
+                        <li class="uk-background-cover" data-uk-img data-src="@slider3">
+                            <img src="@slider3" alt="" data-uk-cover>
+                            <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
+                            <div class="uk-position-center uk-position-medium uk-text-center uk-light">
+
+                                <p class="uk-margin-remove">@quote3</p>
+                            </div>
+                        </li>
+                    }
+                }
 
 
-            <div class="uk-container uk-text-center yb-profile-desc-wrap uk-position-relative">
-                <img src="src/img/x1.png" alt="" width="60" />
+            </ul>
+        </div>
+
+
+        @*<div class="uk-container uk-text-center yb-profile-desc-wrap uk-position-relative">
+
                 <h1 class="uk-text-bold yb-shadow-text"><span>@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("header", ViewBag.culture))</span></h1>
                 <div class="uk-text-bold yb-myjob">
-                     <span id="typed" class="typed"></span>
+                    <span id="typed" class="typed"></span>
                 </div>
-            </div>
-        </section>
+            </div>*@
+    </section>
 
 
-    </div><!-- end home section -->
-
-
+</div><!-- end home section -->
