@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="uk-margin ">
                                 <label for="f_message" class="uk-form-label">@(Mix.Cms.Lib.Services.MixService.TranslateString("contact_form_message", ViewBag.culture))*</label>
                                 <div class="uk-form-controls">
@@ -81,10 +81,7 @@
                             <span data-uk-icon="phone" class="uk-flex-none uk-text-primary"></span>
                             <span> @(Mix.Cms.Lib.Services.MixService.GetConfig<string>("profile_phone", ViewBag.culture))</span>
                         </li>
-                        <li class="uk-flex uk-flex-middle">
-                            <span data-uk-icon="location" class="uk-flex-none uk-text-primary "></span>
-                            <span>@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("profile_address", ViewBag.culture))</span>
-                        </li>
+
                     </ul>
                 </div>
             </div>

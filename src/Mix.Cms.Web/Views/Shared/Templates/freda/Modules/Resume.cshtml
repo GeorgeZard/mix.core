@@ -12,7 +12,7 @@
     var attributes_set_value = Mix.Cms.Lib.ViewModels.MixAttributeSetValues.ReadMvcViewModel.Repository.GetModelListAsync("Priority", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Asc, 0, 20);
     var attributes_set_value_categories = attributes_set_value.Result.Data.Items.Where(p => p.AttributeSetName == "sys_category").OrderBy(o => o.Priority);
 
-    var posts = await Mix.Cms.Lib.ViewModels.MixPosts.ReadViewModel.Repository.GetModelListAsync("CreatedDateTime", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Desc, 20, 0);
+    var posts = await Mix.Cms.Lib.ViewModels.MixPosts.ReadViewModel.Repository.GetModelListAsync("CreatedDateTime", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Desc, 200, 0);
 
 }
 
@@ -28,63 +28,86 @@
     </div>
     <div class="uk-container">
         <div data-uk-grid class="uk-grid-divider">
-            <div class="uk-width-1-4@s uk-visible@s uk-margin-large-bottom yb-section-padding-top " id="resume-nav-wrapper">
-                <div data-uk-sticky="bottom: #resume-nav-wrapper; offset: 100; media: 650">
-                    <ul class="yb-nav-left uk-tab-left uk-tab" data-uk-scrollspy-nav="closest: li; scroll: false; offset: 120">
-                        @foreach (var attr in attributes_set_data_categories.OrderBy(o => o.Priority)) {
-                            if (attributes_set_value_categories.Any(p => p.DataId == attr.Id && p.AttributeFieldName == "title")) {
-                                if (attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "type").StringValue == "Module") {
-                                    <li class="uk-active">
-                                        <a href="#@attr.Id" class="yb-inner-link" data-offset="120">
-                                            <span data-uk-icon="minus"></span>
-                                            @attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "title").StringValue
-                                        </a>
-                                    </li>
+            @*<div class="uk-width-1-4@s uk-visible@s uk-margin-large-bottom yb-section-padding-top " id="resume-nav-wrapper">
+                    <div data-uk-sticky="bottom: #resume-nav-wrapper; offset: 100; media: 650">
+                        <ul class="yb-nav-left uk-tab-left uk-tab" data-uk-scrollspy-nav="closest: li; scroll: false; offset: 120">
+                            @foreach (var attr in attributes_set_data_categories.OrderBy(o => o.Priority))
+                            {
+                                if (attributes_set_value_categories.Any(p => p.DataId == attr.Id && p.AttributeFieldName == "title"))
+                                {
+                                    if (attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "type").StringValue == "Module")
+                                    {
+                                        <li class="uk-active">
+                                            <a href="#@attr.Id" class="yb-inner-link" data-offset="120">
+                                                <span data-uk-icon="minus"></span>
+                                                @attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "title").StringValue
+                                            </a>
+                                        </li>
+                                    }
                                 }
                             }
-                        }
 
-                    </ul>
-                </div>
-            </div>
+                        </ul>
+                    </div>
+                </div>*@
             <div class="uk-width-expand@s yb-section-padding-top">
 
-                @foreach (var attr in attributes_set_data_categories.OrderBy(o => o.Priority)) {
+                @foreach (var attr in attributes_set_data_categories.OrderBy(o => o.Priority))
+                {
+
                     <div>
-                        @if (attributes_set_value_categories.Any(p => p.DataId == attr.Id && p.AttributeFieldName == "title")) {
-                            var attribute_set_title = attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "title").StringValue;
-                            if (attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "type").StringValue == "Module") {
-                                <h2 class="yb-section-title uk-heading-line" id="@attr.Id">
-                                    <span>@attribute_set_title</span>
-                                </h2>
-                                <div class="yb-resume-list">
-                                    <ul class="uk-list uk-list-large uk-list-divider">
+                        <ul uk-accordion>
+                            @if (attributes_set_value_categories.Any(p => p.DataId == attr.Id && p.AttributeFieldName == "title"))
+                            {
+                                var attribute_set_title = attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "title").StringValue;
+                                if (attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "type").StringValue == "Module")
+                                {
 
-                                        @foreach (var post in posts.Data.Items.Where(p => p.ListCategory.Contains(attribute_set_title))) {
-                                            <li>
-                                                <div class="yb-resume-item">
-                                                    <div class="yb-resume-item-date">
-                                                        <div class="yb-resume-item-date-icon"> <span data-uk-icon="calendar"></span></div>
-                                                        <div class="yb-resume-item-date-text"><span>@post.Excerpt</span></div>
-                                                    </div>
-                                                    <h4 class="yb-section-title"> @post.Title</h4>
+                                    <li>
+                                        @*<h2 class="yb-section-title" id="@attr.Id">*@
+                                        <a class="yb-section-title uk-accordion-title uk-padding-medium  uk-margin-medium-bottom yb-section-padding-top" style="padding-top:20px;padding-bottom:20px" id="@attr.Id">@attribute_set_title</a>
+                                        @*</h2>*@
 
-                                                    <div class="uk-text-small">
-                                                        <p>
-                                                            @Html.Raw(post.Content)
+                                        <div class="uk-accordion-content">
+                                            <div class="yb-resume-list ">
 
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        }
+                                                <ul class="uk-list uk-list-large uk-list-divider">
 
-                                    </ul>
-                                </div>
+                                                    @foreach (var post in posts.Data.Items.Where(p => p.ListCategory.Contains(attribute_set_title)))
+                                                    {
 
+
+
+                                                        <li>
+                                                            <div class="yb-resume-item">
+                                                                <div class="yb-resume-item-date">
+                                                                    <div class="yb-resume-item-date-icon"> <span data-uk-icon="calendar"></span></div>
+                                                                    <div class="yb-resume-item-date-text"><span>@post.Excerpt</span></div>
+                                                                </div>
+                                                                <h4 class="yb-section-title"> @post.Title</h4>
+
+                                                                <div class="uk-text-small">
+                                                                    <p>
+                                                                        @Html.Raw(post.Content)
+
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+                                }
                             }
-                        }
+                        </ul>
+
                     </div>
+
                     <section>
                     </section>
                 }

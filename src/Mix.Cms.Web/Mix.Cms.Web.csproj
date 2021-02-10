@@ -15,6 +15,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Remove="Views\Shared\Templates\freda\Pages\AboutJourney.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
       <None Include="Views\Shared\Templates\evolo\Edms\_Blank.cshtml" />
       <None Include="Views\Shared\Templates\evolo\Forms\_Blank.cshtml" />
       <None Include="Views\Shared\Templates\evolo\Layouts\_Footer.cshtml" />

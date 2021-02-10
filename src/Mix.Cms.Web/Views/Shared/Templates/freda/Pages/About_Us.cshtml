@@ -1,80 +1,140 @@
 @using Mix.Cms.Lib
 @using Mix.Cms.Lib.Services
-@model Mix.Cms.Lib.ViewModels.MixModules.ReadMvcViewModel
-
+@model Mix.Cms.Lib.ViewModels.MixPages.ReadMvcViewModel
 @{
-    string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
-    string templateFolder = Mix.Cms.Lib.MixCmsHelper.GetTemplateFolder(ViewBag.culture);
-
-    var attributes_set_data = Mix.Cms.Lib.ViewModels.MixAttributeSetDatas.ReadMvcViewModel.Repository.GetModelListAsync("Priority", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Asc, 0, 20);
-    var attributes_set_data_categories = attributes_set_data.Result.Data.Items.Where(p => p.AttributeSetName == "sys_category").OrderBy(o => o.Priority);
-
-    var attributes_set_value = Mix.Cms.Lib.ViewModels.MixAttributeSetValues.ReadMvcViewModel.Repository.GetModelListAsync("Priority", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Asc, 0, 20);
-    var attributes_set_value_categories = attributes_set_value.Result.Data.Items.Where(p => p.AttributeSetName == "sys_category").OrderBy(o => o.Priority);
-
-    var posts = await Mix.Cms.Lib.ViewModels.MixPosts.ReadViewModel.Repository.GetModelListAsync("CreatedDateTime", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Desc, 20, 0);
-
+    string assetFolder = MixCmsHelper.GetAssetFolder(ViewBag.culture);
+    string templateFolder = MixCmsHelper.GetTemplateFolder(ViewBag.culture);
+    var social = Mix.Cms.Lib.MixCmsHelper.GetModule("social", ViewBag.culture);
 }
 
-<!-- blog section -->
-<section class="yb-section yb-section-padding" id="blog">
-    <div class="yb-section-point-wrapper">
-        <div class="uk-container">
-            <div class="yb-section-point">
-                <span>Blog</span>
-            </div>
-        </div>
-    </div>
-    <div class="uk-container">
-        <h2 class="yb-section-title uk-heading-line"><span>@(Mix.Cms.Lib.Services.MixService.TranslateString("blog_latest_news", ViewBag.culture))</span></h2>
+<body id="body-app">
+    <main class="yb-main-content">
+        <section>
 
-        <div data-uk-grid class="uk-grid-medium yb-margin-top-1 yb-margin-bottom-2">
+            <div class="uk-container">
+                <div data-uk-grid class="uk-grid-divider">
+                    <div class="uk-width-3-4@m yb-section-padding">
+                        <h1 class="yb-section-title">
+                            @{
+                                @Model.Excerpt
 
-            @foreach (var attr in attributes_set_data_categories.OrderBy(o => o.Priority))
-            {
-                if (attributes_set_value_categories.Any(p => p.DataId == attr.Id && p.AttributeFieldName == "title"))
-                {
-                    var attribute_set_title = attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "title").StringValue;
-                    if (attributes_set_value_categories.FirstOrDefault(p => p.DataId == attr.Id && p.AttributeFieldName == "type").StringValue == "Post")
-                    {
-                        @foreach (var post in posts.Data.Items.Where(p => p.ListCategory.Contains(attribute_set_title)))
-                        {
-                            <div class="uk-width-1-3@m uk-width-1-2@s">
-                                <a href="/post/@post.Id/@post.SeoName">
-                                    <div class="yb-blog-item uk-background-cover" data-src="@post.Image" data-uk-img>
-                                        <div class="uk-overlay uk-position-cover"> </div>
-                                        <div class="uk-overlay uk-position-top">
-                                            <span class="uk-badge">@post.Excerpt</span>
-                                        </div>
-                                        <div class="uk-overlay uk-position-bottom">
-                                            <h5 class="yb-blog-item-title uk-text-truncate">@post.Title</h5>
-                                            <div class="yb-blog-item-meta">
-                                                <div>
-                                                    <span>@post.CreatedDateTime</span>
-                                                </div>
-                                                @*<div>
-                                                        <span data-uk-icon="comment"></span> 120
-                                                    </div>
-                                                    <div>
-                                                        <span data-uk-icon="heart"></span> 89
-                                                    </div>*@
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
+                            }
+                        </h1>
+                        <div class="yb-blog-item-meta uk-margin-bottom uk-text-muted">
+                            <div>
+                                <span>@Model.CreatedDateTime.ToShortDateString()</span>
                             </div>
-                        }
-                    }
-                }
-            }
-        </div>
 
 
-        <h5 class="uk-heading-line uk-text-right uk-text-bold">
-            <a href="/postlist" class="uk-link-heading">
-                @(Mix.Cms.Lib.Services.MixService.TranslateString("blog_see_more", ViewBag.culture))
-                <span data-uk-icon="icon:arrow-right; ratio: 2"></span>
-            </a>
-        </h5>
-    </div>
-</section><!-- end blog section -->
+                            @*<div><span data-uk-icon="comment"></span> 120</div>
+                                <div><span data-uk-icon="heart"></span> 89</div>*@
+                        </div>
+                        <div>
+                            <img src="@Model.Image" alt="" class="yb-img-featured " />
+                        </div>
+
+                        <div class="uk-position-relative">
+                            <div class="yb-blog-content yb-margin-bottom-2">
+
+                                <p>
+                                    @Html.Raw(Model.Content)
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="uk-width-1-4@m yb-section-padding">
+                        @*<div class="yb-sidebar-item">
+                                <form class="uk-search uk-search-default uk-width-1-1">
+                                    <span data-uk-search-icon></span>
+                                    <input class="uk-search-input " type="search" placeholder="Search...">
+                                </form>
+                            </div>*@
+                        <div class="yb-sidebar-item">
+                            <h6 class="uk-text-bold uk-heading-line"><span>@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("SiteName", ViewBag.culture)) </span></h6>
+                            <div data-uk-grid class="uk-child-width-1-1@m uk-child-width-1-2@s uk-child-width-1-1 uk-flex-middle ">
+                                <div>
+                                    <img src="@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("profile_picture", ViewBag.culture))" data-src="@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("profile_picture", ViewBag.culture))" data-uk-img alt="" class="uk-border-rounded" />
+                                </div>
+                                <div class="uk-margin-remove ">
+                                    <div class="yb-text-small uk-margin-small-top">
+
+                                        Email: <strong>@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("profile_email", ViewBag.culture))</strong> <br />
+                                        Telephone: <strong>@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("profile_phone", ViewBag.culture)) </strong><br />
+                                        Address: <strong>@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("profile_address", ViewBag.culture)) </strong><br />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="yb-sidebar-item">
+                                <h6 class="uk-text-bold uk-heading-line "><span>Must Read Articles</span></h6>
+                                <ul class="uk-list uk-list-divider">
+                                    <li>
+                                        <a href="#" class="yb-text-small uk-link-reset">
+                                            <div class="uk-flex">
+                                                <div class="yb-width-1">
+                                                    <img src="/content/templates/freda/assets/fredahtml-20/src/img/blog/01.jpg" class="uk-border-rounded" alt="">
+                                                </div>
+                                                <div class="uk-width-expand uk-margin-small-left">
+                                                    <div class="uk-text-bold">Exploring New York</div>
+                                                    <span class="uk-text-muted">November 20, 2014</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="yb-text-small uk-link-reset">
+                                            <div class="uk-flex">
+                                                <div class="yb-width-1">
+                                                    <img src="/content/templates/freda/assets/fredahtml-20/src/img/blog/02.jpg" class="uk-border-rounded" alt="">
+                                                </div>
+                                                <div class="uk-width-expand uk-margin-small-left">
+                                                    <div class="uk-text-bold">Exploring New York</div>
+                                                    <span class="uk-text-muted">November 20, 2014</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="yb-sidebar-item">
+                                <h6 class="uk-text-bold uk-heading-line "><span>Categories</span></h6>
+                                <div data-uk-form-custom="target: > * > span:first-child" class="uk-width-1-1 ">
+                                    <select>
+                                        <option value="">Select Category</option>
+                                        <option value="1">Software Engineering</option>
+                                        <option value="2">Articial Intelligence</option>
+                                        <option value="3">Blockchain</option>
+                                        <option value="4">Cryptocurrency</option>
+                                    </select>
+                                    <button class="uk-button uk-button-default  uk-width-1-1" type="button" tabindex="-1">
+                                        <span></span>
+                                        <span data-uk-icon="icon: chevron-down"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="yb-sidebar-item">
+                                <h6 class="uk-text-bold uk-heading-line"><span>Tags</span></h6>
+                                <div class="yb-sidebar-tags">
+                                    <a href="#" class="uk-link-reset">Creative</a>
+                                    <a href="#" class="uk-link-reset">PHP</a>
+                                    <a href="#" class="uk-link-reset">Resolved</a>
+                                    <a href="#" class="uk-link-reset">Word</a>
+                                    <a href="#" class="uk-link-reset">Count</a>
+                                    <a href="#" class="uk-link-reset">Funny</a>
+                                </div>
+                            </div>
+                            <div class="yb-sidebar-item">
+                                <h6 class="uk-text-bold uk-heading-line "><span>Subcribe</span></h6>
+                                <form class="uk-inline uk-width-1-1">
+                                    <button class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: link"></button>
+                                    <input class="uk-input " type="text" placeholder="Your Email">
+                                </form>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main> <!-- end main section -->
+    <!-- main footer -->
+</body>

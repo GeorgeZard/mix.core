@@ -52,12 +52,25 @@
 
                             @*@foreach (var post in posts.Data.Items)
                                 {
-                                    <a href="/post/@post.Id/@post.SeoTitle" class="yb-my-intro">
+                                    <a href="" class="yb-my-intro">
                                         <span data-uk-icon="icon: play; ratio: 2"></span>
                                         <span class="yb-my-intro-text">Video</span>
                                     </a>
                                 }*@
                         </div>
+                        @{
+                            var journey = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("journey", ViewBag.culture));
+                            if (!string.IsNullOrEmpty(journey))
+                            {
+                                <a href="/aboutus" class="uk-icon-button uk-margin-medium-bottom uk-width-1-2 uk-margin-xlarge-left" data-uk-icon style="background-image: linear-gradient( -90deg, rgb(49 207 171) 0%, #50E3C2 100%);color:white">
+                                    @journey
+                                </a>
+
+                            }
+
+                        }
+
+
                         <div class="yb-my-profile-desc-bottom yb-bg-soft">
                             <ul class="yb-my-profile-desc-info uk-list">
                                 @if (aboutCates != null)
@@ -80,17 +93,6 @@
         </div>
     </div>
     <div class="yb-my-profile">
-        <div class="uk-container">
-            <div>
-                <div class="yb-my-profile-desc">
-                    <div class="yb-section-point-wrapper">
-                        <div class="yb-section-point right">
-                            <span>@Model.Title</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="yb-border-top yb-border-bottom ">
         <div class="uk-container">
@@ -102,17 +104,69 @@
                     {
                         <div>
                             <div class="yb-box-service">
-                                <span class="uk-icon" data-uk-icon="icon: grid; ratio: 1.5"></span>
-                                <h5>@item.Title</h5>
+                                <a class="uk-icon-link" href="javascript:void(0)" onclick="clickHandle(event, '@item.Id')">
+                                    <span class="uk-icon-link" data-uk-icon="icon: grid; ratio:1.5" type="button"></span>
+                                    <h5>@item.Title</h5>
+
+                                </a>
+
                             </div>
+
                         </div>
 
+
                     }
+
                 }
+
 
             </div>
 
         </div>
 
+
+        <div class=" yb-border-top uk-container">
+            <div class="uk-grid-collapse uk-child-width-expand@m" data-uk-grid>
+                <div class="yb-my-profile-desc">
+                    @if (aboutServs != null)
+                    {
+                        foreach (var item in aboutServs.MenuItems)
+                        {
+
+                            <div id="@item.Id" class="uk-hidden tabcontent uk-card uk-card-default uk-card-body uk-width-1-1@m uk-card-hover uk-animation-fade">
+                                <p style="font-style: italic;">@item.Description</p>
+                            </div>
+                        }
+
+                    }
+
+
+                </div>
+            </div>
+
+        </div>
     </div>
 </section><!-- end about section -->
+
+
+
+<script>
+
+    function clickHandle(evt, itemName) {
+        let i, tabcontent;
+
+        // This is to clear the previous clicked content.
+        tabcontent = document.getElementsByClassName("tabcontent");
+
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+
+        // Display the clicked tab and set it to active.
+        document.getElementById(itemName).style.display = "block";
+        document.getElementById(itemName).classList.remove("uk-hidden");
+        evt.currentTarget.className += " active";
+    }
+
+</script>

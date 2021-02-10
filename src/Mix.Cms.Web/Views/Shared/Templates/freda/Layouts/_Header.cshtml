@@ -12,47 +12,76 @@
 <div class="yb-full-height " id="home">
 
     <section class="yb-profile-desc yb-dark-skin uk-light">
-        <div class="yb-slide-bg uk-light" tabindex="-1" data-uk-slideshow="animation: fade; autoplay: true; draggable: false; pause-on-hover: false">
-            <ul class="uk-slideshow-items yb-slide-wrapper">
+        <div class="yb-slide-bg uk-light" tabindex="-1" data-uk-slideshow="animation: fade; autoplay: true; draggable: false; pause-on-hover: false; autoplay-interval: 6000;">
+            <ul class="uk-slideshow-items yb-slide-wrapper ">
                 @{
                     var slider1 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("sliderone", ViewBag.culture));
                     var quote1 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("quoteone", ViewBag.culture));
-                    if (!string.IsNullOrEmpty(slider1)  || !string.IsNullOrEmpty(quote1))
+                    if (!string.IsNullOrEmpty(slider1) || !string.IsNullOrEmpty(quote1))
                     {
                         <li class="uk-background-cover" data-uk-img data-src="@slider1">
                             <img src="@slider1" alt="" data-uk-cover>
                             <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
-                            <div class="uk-position-center uk-position-medium uk-text-center uk-light">
+                            <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
 
-                                <p class="uk-margin-remove">@quote1</p>
+                                <p>@quote1</p>
                             </div>
                         </li>
                     }
 
                     var slider2 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("slidertwo", ViewBag.culture));
                     var quote2 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("quotetwo", ViewBag.culture));
-                    if (!string.IsNullOrEmpty(slider2) && !string.IsNullOrEmpty(quote2))
+                    if (!string.IsNullOrEmpty(slider2) || !string.IsNullOrEmpty(quote2))
                     {
                         <li class="uk-background-cover" data-uk-img data-src="@slider2">
                             <img src="@slider2" alt="" data-uk-cover>
                             <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
-                            <div class="uk-position-center uk-position-medium uk-text-center uk-light">
-
-                                <p class="uk-margin-remove">@quote2</p>
+                            if(!string.IsNullOrEmpty(quote2)){
+                            <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
+                                <p>@quote2</p>
                             </div>
+                            }
+                            }
+
                         </li>
                     }
 
                     var slider3 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("sliderthree", ViewBag.culture));
                     var quote3 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("quotethree", ViewBag.culture));
-                    if (!string.IsNullOrEmpty(slider3) && !string.IsNullOrEmpty(quote3))
+                    if (!string.IsNullOrEmpty(slider3) || !string.IsNullOrEmpty(quote3))
                     {
                         <li class="uk-background-cover" data-uk-img data-src="@slider3">
                             <img src="@slider3" alt="" data-uk-cover>
                             <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
-                            <div class="uk-position-center uk-position-medium uk-text-center uk-light">
+                            <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
 
-                                <p class="uk-margin-remove">@quote3</p>
+                                <p>@quote3</p>
+                            </div>
+                        </li>
+                    }
+                    var slider4 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("sliderfour", ViewBag.culture));
+                    var quote4 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("quotefour", ViewBag.culture));
+                    if (!string.IsNullOrEmpty(slider4) || !string.IsNullOrEmpty(quote4))
+                    {
+                        <li class="uk-background-cover" data-uk-img data-src="@slider4">
+                            <img src="@slider4" alt="" data-uk-cover>
+                            <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
+                            <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
+
+                                <p>@quote4</p>
+                            </div>
+                        </li>
+                    }
+                    var slider5 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("sliderfive", ViewBag.culture));
+                    var quote5 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("quotefive", ViewBag.culture));
+                    if (!string.IsNullOrEmpty(slider5) || !string.IsNullOrEmpty(quote5))
+                    {
+                        <li class="uk-background-cover" data-uk-img data-src="@slider5">
+                            <img src="@slider5" alt="" data-uk-cover>
+                            <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
+                            <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
+
+                                <p>@quote5</p>
                             </div>
                         </li>
                     }
@@ -63,13 +92,7 @@
         </div>
 
 
-        @*<div class="uk-container uk-text-center yb-profile-desc-wrap uk-position-relative">
 
-                <h1 class="uk-text-bold yb-shadow-text"><span>@(Mix.Cms.Lib.Services.MixService.GetConfig<string>("header", ViewBag.culture))</span></h1>
-                <div class="uk-text-bold yb-myjob">
-                    <span id="typed" class="typed"></span>
-                </div>
-            </div>*@
     </section>
 
 
