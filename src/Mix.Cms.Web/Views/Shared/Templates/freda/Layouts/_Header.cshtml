@@ -12,7 +12,7 @@
 <div class="yb-full-height " id="home">
 
     <section class="yb-profile-desc yb-dark-skin uk-light">
-        <div class="yb-slide-bg uk-light" tabindex="-1" data-uk-slideshow="animation: fade; autoplay: true; draggable: false; pause-on-hover: false; autoplay-interval: 6000;">
+        <div class="yb-slide-bg uk-light" tabindex="-1" data-uk-slideshow="animation: fade; autoplay: true; draggable: false; pause-on-hover: false; autoplay-interval: 4000;">
             <ul class="uk-slideshow-items yb-slide-wrapper ">
                 @{
                     var slider1 = (Mix.Cms.Lib.Services.MixService.GetConfig<string>("sliderone", ViewBag.culture));
@@ -24,7 +24,7 @@
                             <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
                             <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
 
-                                <p>@quote1</p>
+                                <p style="margin: 35px 0 -20px;">@quote1</p>
                             </div>
                         </li>
                     }
@@ -38,7 +38,7 @@
                             <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
                             if(!string.IsNullOrEmpty(quote2)){
                             <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
-                                <p>@quote2</p>
+                                <p style="margin: 35px 0 -20px;">@quote2</p>
                             </div>
                             }
                             }
@@ -55,7 +55,7 @@
                             <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
                             <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
 
-                                <p>@quote3</p>
+                                <p style="margin: 35px 0 -20px;">@quote3</p>
                             </div>
                         </li>
                     }
@@ -68,7 +68,7 @@
                             <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
                             <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
 
-                                <p>@quote4</p>
+                                <p style="margin: 35px 0 -20px;">@quote4</p>
                             </div>
                         </li>
                     }
@@ -81,7 +81,7 @@
                             <div class="uk-overfly uk-position-cover yb-slide-overfly"></div>
                             <div class="uk-position-top-center uk-text-center uk-text-large uk-light uk-margin-xlarge-top">
 
-                                <p>@quote5</p>
+                                <p style="margin: 0 0 -20px;">@quote5</p>
                             </div>
                         </li>
                     }

@@ -4,10 +4,15 @@
 @{
     string assetFolder = Mix.Cms.Lib.MixCmsHelper.GetAssetFolder(ViewBag.culture);
     string templateFolder = Mix.Cms.Lib.MixCmsHelper.GetTemplateFolder(ViewBag.culture);
-    var posts = await Mix.Cms.Lib.ViewModels.MixPosts.ReadViewModel.Repository.GetModelListAsync(
-        "CreatedDateTime", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Desc,
-        20, 0
-    );
+
+    var attributes_set_data = Mix.Cms.Lib.ViewModels.MixAttributeSetDatas.ReadMvcViewModel.Repository.GetModelListAsync("Priority", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Asc, 0, 20);
+    var attributes_set_data_categories = attributes_set_data.Result.Data.Items.Where(p => p.AttributeSetName == "sys_category").OrderBy(o => o.Priority);
+
+    var attributes_set_value = Mix.Cms.Lib.ViewModels.MixAttributeSetValues.ReadMvcViewModel.Repository.GetModelListAsync("Priority", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Asc, 0, 20);
+    var attributes_set_value_categories = attributes_set_value.Result.Data.Items.Where(p => p.AttributeSetName == "sys_category").OrderBy(o => o.Priority);
+
+    var posts = await Mix.Cms.Lib.ViewModels.MixPosts.ReadViewModel.Repository.GetModelListAsync("CreatedDateTime", Mix.Heart.Enums.MixHeartEnums.DisplayDirection.Desc, 200, 0);
+
 }
 
 
@@ -25,7 +30,8 @@
                 <div class="uk-width-3-4@m yb-section-padding">
                     <h1 class="yb-section-title uk-heading-line"><span>Latest Articles</span></h1>
                     <div data-uk-grid class="uk-grid-medium uk-child-width-1-2@s uk-margin-medium-top">
-                        @foreach (var post in posts.Data.Items) {
+                        @foreach (var post in posts.Data.Items)
+                        {
                             <div>
                                 <a href="/post/@post.Id/@post.SeoTitle">
                                     <div class="yb-blog-item uk-background-cover" data-src="src/img/blog/02.jpg" data-uk-img>
@@ -124,21 +130,24 @@
                         </ul>
                     </div>
                     <div class="yb-sidebar-item">
-                        <h6 class="uk-text-bold uk-heading-line "><span>Categories</span></h6>
-                        <div data-uk-form-custom="target: > * > span:first-child" class="uk-width-1-1 ">
-                            <select>
-                                <option value="">Select Category</option>
-                                <option value="1">Software Engineering</option>
-                                <option value="2">Articial Intelligence</option>
-                                <option value="3">Blockchain</option>
-                                <option value="4">Cryptocurrency</option>
-                            </select>
-                            <button class="uk-button uk-button-default  uk-width-1-1" type="button" tabindex="-1">
-                                <span></span>
-                                <span data-uk-icon="icon: chevron-down"></span>
-                            </button>
+                        
+
+                            <h6 class="uk-text-bold uk-heading-line "><span>Categories</span></h6>
+                            <div data-uk-form-custom="target: > * > span:first-child" class="uk-width-1-1 ">
+                                <select>
+                                    <option value="">Select Category</option>
+                                    <option value="1">Software Engineering</option>
+                                    <option value="2">Articial Intelligence</option>
+                                    <option value="3">Blockchain</option>
+                                    <option value="4">Cryptocurrency</option>
+                                </select>
+                                <button class="uk-button uk-button-default  uk-width-1-1" type="button" tabindex="-1">
+                                    <span></span>
+                                    <span data-uk-icon="icon: chevron-down"></span>
+                                </button>
+                            </div>
+                        
                         </div>
-                    </div>
                     <div class="yb-sidebar-item">
                         <h6 class="uk-text-bold uk-heading-line"><span>Tags</span></h6>
                         <div class="yb-sidebar-tags">
